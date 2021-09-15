@@ -4,14 +4,28 @@ set -e
 seconds=0
 while [ $# -gt 0 ]; do
   case "$1" in
-  --sec)
+  -s|--sec)
     seconds=$2
     ;;
-  --min)
+  -m|--min)
     seconds=$(($2*60))
     ;;
   -h|--help)
-    echo "Add help text here."
+    echo "Run a timer or stopwatch.
+
+gh timer [units] [number]
+
+[units]
+  -s, --sec : seconds 
+  -m, --min : minutes
+
+Examples:
+
+gh timer --sec 30
+    run stopwatch for 30 seconds
+
+gh timer --min 5
+    run stopwatch for 5 minutes"
     exit 0
     ;;
   esac
@@ -30,3 +44,4 @@ date1=$(date +%s)
 while ! [ $(( $(date +%s) - $date1 )) -ge $seconds ]; do
     show_clock "$(date -u --date @$(( $(date +%s) - $date1 )) +%H)" "$(date -u --date @$(( $(date +%s) - $date1 )) +%M)" "$(date -u --date @$(( $(date +%s) - $date1 )) +%S)"
 done
+
