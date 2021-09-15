@@ -1,35 +1,32 @@
 #!/bin/bash
 set -e
 
-echo "Hello gh-timer!"
+seconds=0
+while [ $# -gt 0 ]; do
+  case "$1" in
+  --sec)
+    seconds=$2
+    ;;
+  --min)
+    seconds=$(($2*60))
+    ;;
+  -h|--help)
+    echo "Add help text here."
+    exit 0
+    ;;
+  esac
+  shift
+done
 
-# Snippets to help get started:
+show_clock () {
+    local hours=$1
+    local minutes=$2
+    local seconds=$3
+    echo -ne "$hours:$minutes:$seconds\r"
+}
 
-# Determine if an executable is in the PATH
-# if ! type -p ruby >/dev/null; then
-#   echo "Ruby not found on the system" >&2
-#   exit 1
-# fi
+date1=$(date +%s)
 
-# Pass arguments through to another command
-# gh issue list "$@" -R cli/cli
-
-# Using the gh api command to retrieve and format information
-# QUERY='
-#   query($endCursor: String) {
-#     viewer {
-#       repositories(first: 100, after: $endCursor) {
-#         nodes {
-#           nameWithOwner
-#           stargazerCount
-#         }
-#       }
-#     }
-#   }
-# '
-# TEMPLATE='
-#   {{- range $repo := .data.viewer.repositories.nodes -}}
-#     {{- printf "name: %s - stargazers: %v\n" $repo.nameWithOwner $repo.stargazerCount -}}
-#   {{- end -}}
-# '
-# exec gh api graphql -f query="${QUERY}" --paginate --template="${TEMPLATE}"
+while ! [ $(( $(date +%s) - $date1 )) -ge $seconds ]; do
+    show_clock "$(date -u --date @$(( $(date +%s) - $date1 )) +%H)" "$(date -u --date @$(( $(date +%s) - $date1 )) +%M)" "$(date -u --date @$(( $(date +%s) - $date1 )) +%S)"
+done
