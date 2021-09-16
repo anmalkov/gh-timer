@@ -181,17 +181,26 @@ print_number() {
     done
 }
 
+old_hours=''
+old_minutes=''
+old_seconds=''
 show_clock () {
     local hours=$1
     local minutes=$2
     local seconds=$3
     if [ "$is_big" = true ] ; then
-      clear
-      print_number 1 $hours
-      print_divider 13
-      print_number 19 $minutes
-      print_divider 31
-      print_number 37 $seconds
+      if [ "$old_hours" != "$hours" ] ; then 
+        print_number 1 $hours
+        old_hours=$hours
+      fi
+      if [ "$old_minutes" != "$minutes" ] ; then 
+        print_number 19 $minutes
+        old_minutes=$minutes
+      fi
+      if [ "$old_seconds" != "$seconds" ] ; then 
+        print_number 37 $seconds
+        old_seconds=$seconds
+      fi
     else
       echo -ne "$hours:$minutes:$seconds\r"   
     fi
@@ -199,6 +208,12 @@ show_clock () {
 
 start_date=$(date +%s)
 end_date=$(date --date="+$seconds seconds" +%s)
+
+if [ "$is_big" = true ] ; then
+  clear
+  print_divider 13
+  print_divider 31
+fi
 
 while ! [ $(( $(date +%s) - $start_date )) -ge $seconds ]; do
     if [ "$is_stopwatch" = true ] ; then
