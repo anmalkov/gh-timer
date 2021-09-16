@@ -49,96 +49,99 @@ gh timer -m 60 -w
   shift
 done
 
+clock_x=$(( ($(tput cols)/2)-(8*6/2) ))
+clock_y=$(( ($(tput lines)/2)-3 ))
+
 # $1 - Y, $2 - X, $3 - text
 echo_pos() {
     echo -ne "\E[${1};${2}H""$3"
 }
 
 print_0 () {
-    echo_pos 1 $1 "*****"
-    echo_pos 2 $1 "*   *"
-    echo_pos 3 $1 "*   *"
-    echo_pos 4 $1 "*   *"
-    echo_pos 5 $1 "*****"
+    echo_pos $clock_y $1            "*****"
+    echo_pos $(( $clock_y + 1 )) $1 "*   *"
+    echo_pos $(( $clock_y + 2 )) $1 "*   *"
+    echo_pos $(( $clock_y + 3 )) $1 "*   *"
+    echo_pos $(( $clock_y + 4 )) $1 "*****"
 }
 print_1 () {
-    echo_pos 1 $1 "    *"
-    echo_pos 2 $1 "    *"
-    echo_pos 3 $1 "    *"
-    echo_pos 4 $1 "    *"
-    echo_pos 5 $1 "    *"
+    echo_pos $clock_y $1            "    *"
+    echo_pos $(( $clock_y + 1 )) $1 "    *"
+    echo_pos $(( $clock_y + 2 )) $1 "    *"
+    echo_pos $(( $clock_y + 3 )) $1 "    *"
+    echo_pos $(( $clock_y + 4 )) $1 "    *"
 }
 
 print_2 () {
-    echo_pos 1 $1 "*****"
-    echo_pos 2 $1 "    *"
-    echo_pos 3 $1 "*****"
-    echo_pos 4 $1 "*    "
-    echo_pos 5 $1 "*****"
+    echo_pos $clock_y $1            "*****"
+    echo_pos $(( $clock_y + 1 )) $1 "    *"
+    echo_pos $(( $clock_y + 2 )) $1 "*****"
+    echo_pos $(( $clock_y + 3 )) $1 "*    "
+    echo_pos $(( $clock_y + 4 )) $1 "*****"
 }
 
 print_3 () {
-    echo_pos 1 $1 "*****"
-    echo_pos 2 $1 "    *"
-    echo_pos 3 $1 " ****"
-    echo_pos 4 $1 "    *"
-    echo_pos 5 $1 "*****"
+    echo_pos $clock_y $1            "*****"
+    echo_pos $(( $clock_y + 1 )) $1 "    *"
+    echo_pos $(( $clock_y + 2 )) $1 " ****"
+    echo_pos $(( $clock_y + 3 )) $1 "    *"
+    echo_pos $(( $clock_y + 4 )) $1 "*****"
 }
 
 print_4 () {
-    echo_pos 1 $1 "*   *"
-    echo_pos 2 $1 "*   *"
-    echo_pos 3 $1 "*****"
-    echo_pos 4 $1 "    *"
-    echo_pos 5 $1 "    *"
+    echo_pos $clock_y $1            "*   *"
+    echo_pos $(( $clock_y + 1 )) $1 "*   *"
+    echo_pos $(( $clock_y + 2 )) $1 "*****"
+    echo_pos $(( $clock_y + 3 )) $1 "    *"
+    echo_pos $(( $clock_y + 4 )) $1 "    *"
 }
 
 print_5 () {
-    echo_pos 1 $1 "*****"
-    echo_pos 2 $1 "*    "
-    echo_pos 3 $1 "*****"
-    echo_pos 4 $1 "    *"
-    echo_pos 5 $1 "*****"
+    echo_pos $clock_y $1            "*****"
+    echo_pos $(( $clock_y + 1 )) $1 "*    "
+    echo_pos $(( $clock_y + 2 )) $1 "*****"
+    echo_pos $(( $clock_y + 3 )) $1 "    *"
+    echo_pos $(( $clock_y + 4 )) $1 "*****"
 }
 
 print_6 () {
-    echo_pos 1 $1 "*****"
-    echo_pos 2 $1 "*    "
-    echo_pos 3 $1 "*****"
-    echo_pos 4 $1 "*   *"
-    echo_pos 5 $1 "*****"
+    echo_pos $clock_y $1            "*****"
+    echo_pos $(( $clock_y + 1 )) $1 "*    "
+    echo_pos $(( $clock_y + 2 )) $1 "*****"
+    echo_pos $(( $clock_y + 3 )) $1 "*   *"
+    echo_pos $(( $clock_y + 4 )) $1 "*****"
 }
 
 print_7 () {
-    echo_pos 1 $1 "*****"
-    echo_pos 2 $1 "    *"
-    echo_pos 3 $1 "    *"
-    echo_pos 4 $1 "    *"
-    echo_pos 5 $1 "    *"
+    echo_pos $clock_y $1            "*****"
+    echo_pos $(( $clock_y + 1 )) $1 "    *"
+    echo_pos $(( $clock_y + 2 )) $1 "    *"
+    echo_pos $(( $clock_y + 3 )) $1 "    *"
+    echo_pos $(( $clock_y + 4 )) $1 "    *"
 }
 
 print_8 () {
-    echo_pos 1 $1 "*****"
-    echo_pos 2 $1 "*   *"
-    echo_pos 3 $1 "*****"
-    echo_pos 4 $1 "*   *"
-    echo_pos 5 $1 "*****"
+    echo_pos $clock_y $1            "*****"
+    echo_pos $(( $clock_y + 1 )) $1 "*   *"
+    echo_pos $(( $clock_y + 2 )) $1 "*****"
+    echo_pos $(( $clock_y + 3 )) $1 "*   *"
+    echo_pos $(( $clock_y + 4 )) $1 "*****"
 }
 
 print_9 () {
-    echo_pos 1 $1 "*****"
-    echo_pos 2 $1 "*   *"
-    echo_pos 3 $1 "*****"
-    echo_pos 4 $1 "    *"
-    echo_pos 5 $1 "*****"
+    echo_pos $clock_y $1            "*****"
+    echo_pos $(( $clock_y + 1 )) $1 "*   *"
+    echo_pos $(( $clock_y + 2 )) $1 "*****"
+    echo_pos $(( $clock_y + 3 )) $1 "    *"
+    echo_pos $(( $clock_y + 4 )) $1 "*****"
 }
 
 print_divider () {
-    echo_pos 1 $1 "     "
-    echo_pos 2 $1 "  *  "
-    echo_pos 3 $1 "     "
-    echo_pos 4 $1 "  *  "
-    echo_pos 5 $1 "     "
+    echo_pos $clock_y $1            "     "
+    echo_pos $(( $clock_y + 1 )) $1 "  *  "
+    echo_pos $(( $clock_y + 2 )) $1 "     "
+    echo_pos $(( $clock_y + 3 )) $1 "  *  "
+    echo_pos $(( $clock_y + 4 )) $1 "     "
 }
 
 # $1 - X offset, $2 - number
@@ -190,15 +193,15 @@ show_clock () {
     local seconds=$3
     if [ "$is_big" = true ] ; then
       if [ "$old_hours" != "$hours" ] ; then 
-        print_number 1 $hours
+        print_number $clock_x $hours
         old_hours=$hours
       fi
       if [ "$old_minutes" != "$minutes" ] ; then 
-        print_number 19 $minutes
+        print_number $(( $clock_x+18 )) $minutes
         old_minutes=$minutes
       fi
       if [ "$old_seconds" != "$seconds" ] ; then 
-        print_number 37 $seconds
+        print_number $(( $clock_x+36 )) $seconds
         old_seconds=$seconds
       fi
     else
@@ -209,10 +212,14 @@ show_clock () {
 start_date=$(date +%s)
 end_date=$(date --date="+$seconds seconds" +%s)
 
+tput civis
+
 if [ "$is_big" = true ] ; then
   clear
-  print_divider 13
-  print_divider 31
+  print_divider $(( $clock_x+12 ))
+  print_divider $(( $clock_x+30 ))
+else 
+  echo
 fi
 
 while ! [ $(( $(date +%s) - $start_date )) -ge $seconds ]; do
@@ -222,3 +229,6 @@ while ! [ $(( $(date +%s) - $start_date )) -ge $seconds ]; do
         show_clock "$(date -u --date @$(( $end_date - $(date +%s) )) +%H)" "$(date -u --date @$(( $end_date - $(date +%s) )) +%M)" "$(date -u --date @$(( $end_date - $(date +%s) )) +%S)"
     fi
 done
+
+echo -e "\n"
+tput cnorm
