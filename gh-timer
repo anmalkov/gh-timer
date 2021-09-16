@@ -21,19 +21,28 @@ while [ $# -gt 0 ]; do
   -h|--help)
     echo "Run a timer or stopwatch.
 
-gh timer [units] [number]
+gh timer [units] [number] [mode] [clock]
 
 [units]
   -s, --sec : seconds 
   -m, --min : minutes
 
+[mode]
+  -w, --stopwatch : use a stopwatch mode, otherwise use a timer mode
+
+[clock]
+  -b, --big : show a big clock, otherwise show a small clock
+
 Examples:
 
-gh timer --sec 30
-    run stopwatch for 30 seconds
+gh timer -s 30
+    run timer for 30 seconds
 
-gh timer --min 5
-    run stopwatch for 5 minutes"
+gh timer -m 5 -b
+    run timer for 5 minutes and show a big clock
+
+gh timer -m 60 -w
+    run stopwatch for 1 hour"
     exit 0
     ;;
   esac
