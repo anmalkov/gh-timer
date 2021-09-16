@@ -2,6 +2,8 @@
 
 A gh extension that runs a timer or stopwatch
 
+![gh-timer](https://github.com/anmalkov/gh-timer/blob/main/demo.png?raw=true)
+
 ## installation
 
 `gh extension install anmalkov/gh-timer`
