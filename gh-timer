@@ -2,6 +2,7 @@
 set -e
 
 seconds=0
+is_stopwatch=false
 while [ $# -gt 0 ]; do
   case "$1" in
   -s|--sec)
@@ -9,6 +10,9 @@ while [ $# -gt 0 ]; do
     ;;
   -m|--min)
     seconds=$(($2*60))
+    ;;
+  -w|--stopwatch)
+    is_stopwatch=true
     ;;
   -h|--help)
     echo "Run a timer or stopwatch.
@@ -39,9 +43,13 @@ show_clock () {
     echo -ne "$hours:$minutes:$seconds\r"
 }
 
-date1=$(date +%s)
+start_date=$(date +%s)
+end_date=$(date --date="+$seconds seconds" +%s)
 
-while ! [ $(( $(date +%s) - $date1 )) -ge $seconds ]; do
-    show_clock "$(date -u --date @$(( $(date +%s) - $date1 )) +%H)" "$(date -u --date @$(( $(date +%s) - $date1 )) +%M)" "$(date -u --date @$(( $(date +%s) - $date1 )) +%S)"
+while ! [ $(( $(date +%s) - $start_date )) -ge $seconds ]; do
+    if [ "$is_stopwatch" = true ] ; then
+        show_clock "$(date -u --date @$(( $(date +%s) - $start_date )) +%H)" "$(date -u --date @$(( $(date +%s) - $start_date )) +%M)" "$(date -u --date @$(( $(date +%s) - $start_date )) +%S)"
+    else
+        show_clock "$(date -u --date @$(( $end_date - $(date +%s) )) +%H)" "$(date -u --date @$(( $end_date - $(date +%s) )) +%M)" "$(date -u --date @$(( $end_date - $(date +%s) )) +%S)"
+    fi
 done
-
