@@ -1,6 +1,6 @@
 # gh-timer
 
-A gh extension that runs timer or stopwatch
+A gh extension that runs a timer or stopwatch
 
 ## installation
 
