@@ -38,10 +38,10 @@ run a timer for 5 minutes and show big clock
 run a stopwatch for 1 hour
 
 `gh timer`
-run a timer for 10 hour
+run a timer for 10 hours
 
 `gh timer -w`
-run a stopwatch for 10 hour
+run a stopwatch for 10 hours
 
 `gh timer -h`
 show help
