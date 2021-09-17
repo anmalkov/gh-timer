@@ -37,6 +37,12 @@ run a timer for 5 minutes and show big clock
 `gh timer -m 60 -w`
 run a stopwatch for 1 hour
 
+`gh timer`
+run a timer for 10 hour
+
+`gh timer -w`
+run a stopwatch for 10 hour
+
 `gh timer -h`
 show help
 
